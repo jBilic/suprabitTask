@@ -9,8 +9,8 @@ Code was developed and tested on following boards:
 
 Wiring is fairly simple and involves a DHT22 sensor and 10k resistor. Flashing of code to ESP will not be explained.
 Image below shows how to do it:
-![This is an image](https://i1.wp.com/www.esp32learning.com/wp-content/uploads/2017/11/lolin32-and-dht22_bb.png?w=1023)
-_Image taken from esp32learning.com_
+![This is an image](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/03/ESP32-DHT-wiring_bb.png?resize=768%2C851&quality=100&strip=all&ssl=1)
+_Image taken from randomnerdtutorials.com_
 
 ## How to use
 
