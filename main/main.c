@@ -28,7 +28,7 @@ static const char *TAG = "suprabit_task";
 
 /* STARTANJE SERVERA */
 
-static esp_err_t hello_handler(httpd_req_t *req)
+static esp_err_t sensor_handler (httpd_req_t *req)
 {
     esp_err_t error;
     ESP_LOGI(TAG, "DHT Temperature read");
@@ -42,10 +42,10 @@ static esp_err_t hello_handler(httpd_req_t *req)
     return error;
 }
 
-static const httpd_uri_t hello_get = {
-    .uri       = "/hello",
+static const httpd_uri_t sensor_get = {
+    .uri       = "/sensor",
     .method    = HTTP_GET,
-    .handler   = hello_handler,
+    .handler   = sensor_handler,
     .user_ctx  = "Hello World!"
 };
 
@@ -67,7 +67,7 @@ static httpd_handle_t start_webserver(void)
     if (httpd_start(&server, &config) == ESP_OK) {
         // Set URI handlers
         ESP_LOGI(TAG, "Registering URI handlers");
-        httpd_register_uri_handler(server, &hello_get);
+        httpd_register_uri_handler(server, &sensor_get);
         ESP_LOGI(TAG, "Registered URI handlers OKAY");
         return server;
     }
@@ -122,6 +122,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
 
 void wifi_init_softap(void)
 {
+
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     esp_netif_create_default_wifi_ap();
@@ -202,4 +203,5 @@ void app_main(void)
     //ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
 
     xTaskCreate(&DHT_task, "DHT_task", 2048, NULL, 5, NULL);
+    server = start_webserver();
 }

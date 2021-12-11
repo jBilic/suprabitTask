@@ -21,6 +21,7 @@ It takes around 5-10 seconds for a WiFi AP to show up. AP is calles __"Suprabit 
 
 Connect to AP. AP is not connected to Internet.
 Open browser and input __192.168.4.2/sensor__
+DHCP is used to create IP address and instances for viewing sensor data.
 
 Website will open showing graph with temperature and humidity data read from DHT sensor.
 
